@@ -1,0 +1,466 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"Ies",
+				"IesimoEnEsperaEn	(Driver.h)"
+			],
+			[
+				"Dicc",
+				"DiccLog"
+			],
+			[
+				"Agre",
+				"AgregarAtras	(Lista.h)"
+			],
+			[
+				"Es",
+				"EsVacia	(Lista.h)"
+			],
+			[
+				"Cantidad",
+				"CantidadComputadoras	(Driver.h)"
+			],
+			[
+				"Crea",
+				"CrearIt	(Conj.h)"
+			],
+			[
+				"Obtener",
+				"ObtenerRed"
+			],
+			[
+				"Paquete",
+				"PaqueteN	(dcnet.h)"
+			],
+			[
+				"DIcc",
+				"DiccLog	(dcnet.h)"
+			],
+			[
+				"Avanza",
+				"AvanzarSegundo	(dcnet.h)"
+			],
+			[
+				"Canti",
+				"CantidadClaves	(test.cpp)"
+			],
+			[
+				"Conj",
+				"ConjLog"
+			],
+			[
+				"Cant",
+				"CantidadClaves	(DiccAvl.h)"
+			],
+			[
+				"Agrega",
+				"AgregarComputadora	(red.h)"
+			],
+			[
+				"Interfaz",
+				"InterfazUsada	(red.h)"
+			],
+			[
+				"O",
+				"ObtenerRed"
+			],
+			[
+				"Interfa",
+				"Interfaces	(red.h)"
+			],
+			[
+				"Comp",
+				"Computadoras	(dcnet.h)"
+			],
+			[
+				"diccs",
+				"diccstring1"
+			],
+			[
+				"Compa",
+				"ComparPrioridad"
+			],
+			[
+				"COmpa",
+				"ComparPrioridad"
+			],
+			[
+				"dicca",
+				"diccavl2"
+			],
+			[
+				"Paqe",
+				"Paquete"
+			],
+			[
+				"ASSE",
+				"ASSERT_EQ"
+			],
+			[
+				"name",
+				"namespace	(LEEME.txt)"
+			],
+			[
+				"for",
+				"for_	For Loop"
+			],
+			[
+				"testear",
+				"testearEncolar"
+			],
+			[
+				"Hay",
+				"HaySiguiente"
+			],
+			[
+				"pare",
+				"padreNuevo"
+			],
+			[
+				"recorrido",
+				"recorridoHastaUltimo"
+			],
+			[
+				"padre",
+				"padreNuevo"
+			],
+			[
+				"templa",
+				"template	(Arreglo.h)"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 400.0,
+		"last_filter": "Package Control: ",
+		"selected_items":
+		[
+			[
+				"Package Control: ",
+				"Package Control: Install Package"
+			],
+			[
+				"git",
+				"Git: Status"
+			],
+			[
+				"git pus",
+				"Git: Push"
+			],
+			[
+				"git q",
+				"Git: Quick Commit"
+			],
+			[
+				"Snippet: ",
+				"Snippet: If Condition"
+			],
+			[
+				"",
+				"Glue - Launch"
+			],
+			[
+				"Packa",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: in",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: ins",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: install",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: instal",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 601.0
+	},
+	"console":
+	{
+		"height": 146.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = 'eb2297e1a458f27d836c04bb0cbaf282' + 'd0e7a3098092775ccb37ca9d6b2e4b7d'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/home/manuel/Documentos/Facultad/Metodos Numericos/metnum-tp1/src/sistema.h",
+		"/home/manuel/Documentos/Facultad/Metodos Numericos/metnum-tp1/src/tp-main.cpp",
+		"/home/manuel/Documentos/Facultad/Metodos Numericos/metnum-tp1/src/testchico.in",
+		"/home/manuel/Documentos/Facultad/Metodos Numericos/metnum-tp1/src/matriz.h",
+		"/home/manuel/Documentos/Facultad/Metodos Numericos/metnum-tp1/src/testchico.out",
+		"/home/manuel/Documentos/Facultad/Metodos Numericos/metnum-tp1/src/tests/test1.expected",
+		"/home/manuel/Documentos/Facultad/Metodos Numericos/metnum-tp1/src/tests/test1.in",
+		"/home/manuel/Documentos/Facultad/Metodos Numericos/metnum-tp1/src/metnum.py",
+		"/home/manuel/Documentos/Facultad/Metodos Numericos/metnum-tp1/src/README",
+		"/home/manuel/Documentos/Facultad/Algoritmos 2/algo2-tp3/src/ColaPrior.h",
+		"/home/manuel/Documentos/Facultad/Metodos Numericos/metnum-tp1/src/tools/horno.m",
+		"/home/manuel/Documentos/Facultad/Orga 2/Labo/03a-punteros_vectores_matrices_ejercicios/Makefile",
+		"/home/manuel/Documentos/Facultad/Orga 2/Labo/03a-punteros_vectores_matrices_ejercicios/matriz.c",
+		"/home/manuel/Documentos/Facultad/Orga 2/Labo/03a-punteros_vectores_matrices_ejercicios/matriz.asm",
+		"/home/manuel/Documentos/Facultad/Orga 2/Labo/03a-punteros_vectores_matrices_ejercicios/mi-matriz.asm",
+		"/home/manuel/.config/sublime-text-3/Packages/User/Package Control.sublime-settings",
+		"/home/manuel/.config/sublime-text-3/Packages/User/Preferences.sublime-settings",
+		"/home/manuel/Documentos/Facultad/Orga 2/Labo/src/holamundo.asm",
+		"/home/manuel/Documentos/Facultad/Orga 2/Labo/src/Makefile",
+		"/home/manuel/Documentos/Facultad/Orga 2/Labo/src/mimqi.asm",
+		"/opt/sublime_text/sublime_plugin.py",
+		"/home/manuel/.config/sublime-text-3/Packages/Default/Preferences.sublime-settings",
+		"/home/manuel/.config/sublime-text-3/Packages/User/Distraction Free.sublime-settings",
+		"/home/manuel/Documentos/Facultad/Orga 2/Labo/src/mequieroir.asm",
+		"/home/manuel/Documentos/Facultad/Orga 2/tp1/tester.c",
+		"/home/manuel/Documentos/Facultad/Orga 2/tp1/salida.casoN.catedra.txt",
+		"/home/manuel/Documentos/Facultad/Algoritmos 2/algo2-tp3/src/driver-test-cpp/test.cpp",
+		"/home/manuel/Documentos/Facultad/Algoritmos 2/algo2-tp3/src/driver-test-cpp/Driver.cpp",
+		"/home/manuel/Documentos/Facultad/Algoritmos 2/algo2-tp3/src/driver-test-cpp/Driver.h",
+		"/home/manuel/Documentos/Facultad/Orga 2/tp1/salida.caso2.catedra.txt",
+		"/home/manuel/Documentos/Facultad/Orga 2/tp1/salida.caso1.catedra.txt",
+		"/home/manuel/Documentos/Facultad/Metodos Numericos/metnum-tp1/src/main.cpp",
+		"/home/manuel/Documentos/Facultad/Metodos Numericos/metnum-tp1/informe/dummy",
+		"/home/manuel/Vídeos/Full Metal Alchemist Brotherhood/FMLSTZXOTVP/FMLSTZXOP/Leer.txt",
+		"/home/manuel/Vídeos/Code Geass R2/C0DE GE4SS R2/Nota.txt",
+		"/home/manuel/Documentos/Facultad/Algoritmos 2/AED2-ApunteFinal-Rama/algo2-resumen.kilepr",
+		"/home/manuel/Documentos/Facultad/Algoritmos 2/AED2-ApunteFinal-Rama/texmake.sh",
+		"/home/manuel/Documentos/Facultad/Algoritmos 2/algo2-tp3/src/test.cpp",
+		"/home/manuel/Documentos/Facultad/Algoritmos 2/algo2-tp3/src/dcnet.cpp",
+		"/home/manuel/Documentos/Facultad/Algoritmos 2/algo2-tp3/src/dcnet.cpp.back",
+		"/home/manuel/Documentos/Facultad/Algoritmos 2/algo2-tp3/src/ConjAVL.h",
+		"/home/manuel/Documentos/Facultad/Algoritmos 2/algo2-tp3/src/DiccAvl.h",
+		"/home/manuel/Documentos/Facultad/Algoritmos 2/algo2-tp3/src/aed2/Lista.h",
+		"/home/manuel/Documentos/Facultad/Algoritmos 2/algo2-tp3/src/aed2/Dicc.h",
+		"/home/manuel/Documentos/Facultad/Algoritmos 2/algo2-tp3/src/aed2/Arreglo.h",
+		"/home/manuel/Documentos/Facultad/Algoritmos 2/algo2-tp3/src/red.h",
+		"/home/manuel/Documentos/Facultad/Algoritmos 2/algo2-tp3/src/red.cpp",
+		"/home/manuel/Documentos/Facultad/Algoritmos 2/algo2-tp3/src/driver-test-cpp/Makefile",
+		"/home/manuel/Documentos/Facultad/Algoritmos 2/algo2-tp3/src/driver-test-cpp/Tipos.h",
+		"/home/manuel/Documentos/Facultad/Algoritmos 2/algo2-tp3/src/dcnet.h",
+		"/home/manuel/Documentos/Facultad/Algoritmos 2/algo2-tp3/src/aed2/Conj.h",
+		"/home/manuel/Documentos/Facultad/Algoritmos 2/algo2-tp3/src/Makefile",
+		"/home/manuel/Documentos/Facultad/Algoritmos 2/algo2-tp3/src/defines.h",
+		"/home/manuel/Documentos/Facultad/Algoritmos 2/algo2-tp3/entrega/Driver.h",
+		"/home/manuel/Documentos/Facultad/Algoritmos 2/algo2-tp3/entrega/test.cpp",
+		"/home/manuel/Documentos/Facultad/Algoritmos 2/algo2-tp3/entrega/Makefile",
+		"/home/manuel/Documentos/Facultad/Algoritmos 2/algo2-tp3/entrega/Tipos.h",
+		"/home/manuel/Documentos/Facultad/Algoritmos 2/algo2-tp3/entrega/ArbolSintactico.h",
+		"/home/manuel/Documentos/Facultad/Algoritmos 2/algo2-tp3/entrega/LEEME.txt",
+		"/home/manuel/Documentos/Facultad/Algoritmos 2/algo2-tp3/entrega/src/aed2.h",
+		"/home/manuel/Documentos/Facultad/Algoritmos 2/algo2-tp3/src/driver-test-cpp/ArbolSintactico.h",
+		"/home/manuel/Documentos/Facultad/Algoritmos 2/algo2-tp3/src/aed2/dicc_trie.h",
+		"/home/manuel/Documentos/Facultad/Algoritmos 2/algo2-tp3/src/test",
+		"/home/manuel/.local/share/Trash/files/dicc_trie.h",
+		"/home/manuel/Documentos/Facultad/Algoritmos 2/algo2-tp3/src/dicc_trie.h",
+		"/home/manuel/Documentos/Facultad/Algoritmos 2/algo2-tp3/dcnet.h",
+		"/home/manuel/Documentos/Facultad/Algoritmos 2/algo2-tp3/dcnet.cpp",
+		"/home/manuel/Documentos/Facultad/Algoritmos 2/algo2-tp3/src/AVL.h",
+		"/home/manuel/Documentos/Facultad/Algoritmos 2/algo2-tp3/src/gColaPrior.h",
+		"/home/manuel/Escritorio/ColaPrior.txt",
+		"/home/manuel/Documentos/Facultad/Algoritmos 2/algo2-tp3/src/LEEME.txt",
+		"/home/manuel/Documentos/Facultad/Algoritmos 2/tp-labo/tests.cpp",
+		"/home/manuel/Documentos/Facultad/Algoritmos 2/algo2-tp3/mini_test.h",
+		"/home/manuel/Documentos/Facultad/Algoritmos 2/algo2-tp3/test.cpp",
+		"/home/manuel/Documentos/Facultad/Algoritmos 2/Laboratorio/Taller-abb/Makefile",
+		"/home/manuel/Documentos/Facultad/Algoritmos 2/Laboratorio/ejercicio_listas/ejercicio/Makefile",
+		"/home/manuel/Documentos/Facultad/Algoritmos 2/algo2-tp3/src/aed2/ConjAcotado.cpp",
+		"/home/manuel/Documentos/Facultad/Algoritmos 2/Laboratorio/ejercicio_listas/ejercicio/test.cpp",
+		"/home/manuel/Documentos/Facultad/Algoritmos 2/algo2-tp3/src/mini_test.h",
+		"/home/manuel/Documentos/Facultad/Algoritmos 2/Laboratorio/Taller-abb/Conjunto.hpp",
+		"/home/manuel/Documentos/Facultad/Algoritmos 2/Laboratorio/Taller-abb/abb.cpp",
+		"/home/manuel/Documentos/Facultad/Algoritmos 2/algo2-tp3/Modulos-CPP/LEEME.txt",
+		"/home/manuel/Documentos/Facultad/Algoritmos 2/algo2-tp3/Modulos-CPP/mini_test.h",
+		"/home/manuel/Documentos/Facultad/Algoritmos 2/algo2-tp3/Modulos-CPP/aed2.h",
+		"/home/manuel/Documentos/Facultad/Algoritmos 2/algo2-tp3/Modulos-CPP/aed2/Arreglo.h",
+		"/home/manuel/Documentos/Facultad/Algoritmos 2/algo2-tp3/Modulos-CPP/aed2/Dicc.h",
+		"/home/manuel/Documentos/Facultad/Algoritmos 2/algo2-tp3/Modulos-CPP/aed2/TiposBasicos.h",
+		"/home/manuel/Documentos/Facultad/Algoritmos 2/algo2-tp3/.gitignore",
+		"/home/manuel/Documentos/Facultad/Algoritmos 2/algo2-tp2/.gitignore",
+		"/home/manuel/Documentos/.contraseñas",
+		"/home/manuel/Documentos/Facultad/Algoritmos 2/tp-labo/main",
+		"/home/manuel/Documentos/Facultad/Algoritmos 2/tp-labo/main.cpp",
+		"/home/manuel/Documentos/Facultad/Algoritmos 2/tp-labo/correpocoyo.h",
+		"/home/manuel/.config/sublime-text-3/Packages/User/HTML.sublime-settings",
+		"/home/manuel/Documentos/Facultad/Algoritmos 2/tp-labo/terminal.glue",
+		"/home/manuel/.config/sublime-text-3/Packages/User/Glue.sublime-settings",
+		"/home/manuel/.config/sublime-text-3/Packages/Terminal/Terminal.sublime-settings",
+		"/home/manuel/.config/sublime-text-3/Packages/User/Terminal.sublime-settings",
+		"/home/manuel/Documentos/Facultad/Algoritmos 2/tp-labo/Make",
+		"/home/manuel/Documentos/Facultad/Algoritmos 2/Laboratorio/ListaAlumnos/tests.cpp",
+		"/home/manuel/.config/sublime-text-3/Packages/User/mi_C++.sublime-build",
+		"/home/manuel/Documentos/Facultad/Algoritmos 2/Laboratorio/ejercicio_listas/Main.cpp",
+		"/home/manuel/Documentos/index.html",
+		"/home/manuel/Documentos/pelotudeando.html",
+		"/home/manuel/Documentos/Facultad/Algoritmos 2/Laboratorio/IteracionVsRecursion/Arbol.h",
+		"/home/manuel/Documentos/Facultad/Algoritmos 2/Laboratorio/IteracionVsRecursion/Arbol.cpp",
+		"/home/manuel/Documentos/Facultad/Algoritmos 2/Laboratorio/IteracionVsRecursion/CMakeLists.txt",
+		"/usr/share/applications/defaults.list"
+	],
+	"find":
+	{
+		"height": 30.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": true,
+		"find_history":
+		[
+			"testchico",
+			"iqd_r",
+			"Preo",
+			"cantidadClaves",
+			"CantidadCla",
+			"red",
+			"Interfaz",
+			"Prioridad",
+			"Interfaz",
+			"nat",
+			"int",
+			"geany",
+			"gedit"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"InterfazN",
+			"Nat",
+			"nat",
+			"sublime_text"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 30.0
+	},
+	"input":
+	{
+		"height": 123.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "Packages/C++/C++ Single File.sublime-build",
+	"project": "README.sublime-project",
+	"replace":
+	{
+		"height": 56.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"~/Documentos/Facultad/Orga 2/Labo/src/mequieroir.asm"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 200.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
