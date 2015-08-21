@@ -29,3 +29,9 @@ void insertarAtras( lista *l, char *palabra ){
 		nodoActual = nodoActual->siguiente;
 	nodoActual->siguiente = nuevoNodo;
 }
+
+/**Mis auxiliares**/
+void chau(char* p){
+  char q[] = "chau";
+  p = q;
+}
