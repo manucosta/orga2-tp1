@@ -45,5 +45,5 @@
 	bool palabraIgual( char *p1, char *p2 );											
 	void insertarAtras( lista *l, char *palabra );
 
-	void chau(char* p);
+	void mayus(char* p);
 

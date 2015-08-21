@@ -16,8 +16,8 @@ int main (void){
 	if( palabraMenor( "hola", "hola" ) ) printf( "TRUE\n" );else printf( "FALSE\n" );
 
 	//Testeo palabraFormatear
-	char p[] = "hola";
-	palabraFormatear( p, chau);
+	char p[] = "Hola mundo!";
+	palabraFormatear( p, mayus);
 	printf("%s\n", p);
 
 	return 0;

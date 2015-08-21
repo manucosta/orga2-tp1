@@ -1,5 +1,7 @@
 #include "lista.h"
 
+#include <ctype.h> //agregada para testear formato
+
 
 
 
@@ -31,7 +33,10 @@ void insertarAtras( lista *l, char *palabra ){
 }
 
 /**Mis auxiliares**/
-void chau(char* p){
-  char q[] = "chau";
-  p = q;
+void mayus(char* p){
+  int i = 0;
+  while(p[i] != 0){
+    p[i] = toupper(p[i]);
+    i++;
+  }
 }
