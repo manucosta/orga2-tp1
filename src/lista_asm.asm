@@ -22,6 +22,7 @@
 ; YA IMPLEMENTADAS EN C
 	extern palabraIgual
 	extern insertarAtras
+	extern fprintf
 
 ; /** DEFINES **/    >> SE RECOMIENDA COMPLETAR LOS DEFINES CON LOS VALORES CORRECTOS
 	%define NULL 		0
@@ -93,11 +94,24 @@ section .text
 
 	; void palabraFormatear( char *p, void (*funcModificarString)(char*) );
 	palabraFormatear:
+		push rbp					;alineo el stack
+		mov rbp, rsp
 		call rsi
+		pop rbp
+		ret
 
 	; void palabraImprimir( char *p, FILE *file );
 	palabraImprimir:
-		; COMPLETAR AQUI EL CODIGO
+		push rbp					;alineo stack
+		mov rbp, rsp
+
+		mov rax, rdi 			
+		mov rdi, rsi
+		mov rsi, rax
+		call fprintf	
+
+		pop rbp
+		ret	
 
 	; char *palabraCopiar( char *p );
 	palabraCopiar:

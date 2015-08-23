@@ -40,3 +40,10 @@ void mayus(char* p){
     i++;
   }
 }
+
+/**
+void palabraImprimir( char *p, FILE *file ){
+  fprintf(file, p);
+  fprintf(file, "\n");
+}
+**/

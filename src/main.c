@@ -2,6 +2,7 @@
 #include <stdio.h>
 
 int main (void){
+	char p[] = "Hola mundo!";
 
 	//Testeo palabraLongitud
 	printf("La longitud de la palabra 'hola' es %d\n", palabraLongitud("hola"));
@@ -16,9 +17,13 @@ int main (void){
 	if( palabraMenor( "hola", "hola" ) ) printf( "TRUE\n" );else printf( "FALSE\n" );
 
 	//Testeo palabraFormatear
-	char p[] = "Hola mundo!";
 	palabraFormatear( p, mayus);
 	printf("%s\n", p);
+
+	//Testeo palabraImprimir
+	FILE * pfile = fopen("hola.txt", "w");
+	palabraImprimir(p, pfile);
+	fclose(pfile);
 
 	return 0;
 }
