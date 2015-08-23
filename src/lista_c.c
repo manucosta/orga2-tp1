@@ -1,9 +1,5 @@
 #include "lista.h"
 
-#include <ctype.h> //agregada para testear formato
-
-
-
 
 /** Funciones Auxiliares ya implementadas en C **/
 						
@@ -33,17 +29,23 @@ void insertarAtras( lista *l, char *palabra ){
 }
 
 /**Mis auxiliares**/
-void mayus(char* p){
-  int i = 0;
-  while(p[i] != 0){
-    p[i] = toupper(p[i]);
-    i++;
-  }
-}
+void nada(char* p){}
 
 /**
 void palabraImprimir( char *p, FILE *file ){
   fprintf(file, p);
   fprintf(file, "\n");
+}
+**/
+
+/**
+char *palabraCopiar( char *p ){
+  unsigned char n = palabraLongitud(p);
+  char* buffer = (char*) malloc(n+1);
+  for(int i = 0; i <= n; i++){
+    buffer[i] = p[i];
+  }
+
+  return buffer;
 }
 **/

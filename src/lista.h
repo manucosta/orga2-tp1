@@ -1,5 +1,6 @@
 #include <stdbool.h>
 #include <stdio.h>
+#include <stdlib.h> 
 
 
 /** Tipos lista y nodo **/
@@ -45,5 +46,5 @@
 	bool palabraIgual( char *p1, char *p2 );											
 	void insertarAtras( lista *l, char *palabra );
 
-	void mayus(char* p);
+	void nada(char* p);
 

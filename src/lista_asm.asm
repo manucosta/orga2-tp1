@@ -23,6 +23,7 @@
 	extern palabraIgual
 	extern insertarAtras
 	extern fprintf
+	extern malloc
 
 ; /** DEFINES **/    >> SE RECOMIENDA COMPLETAR LOS DEFINES CON LOS VALORES CORRECTOS
 	%define NULL 		0
@@ -33,12 +34,12 @@
 	%define OFFSET_PRIMERO 		 0
 
 	%define NODO_SIZE     		 0
-	%define OFFSET_SIGUIENTE   	 0
+	%define OFFSET_SIGUIENTE    0
 	%define OFFSET_PALABRA 		 0
 
 
 section .rodata
-
+	LF: DB 10 		;puntero a string salto de línea
 
 section .data
 
@@ -53,15 +54,15 @@ section .text
 	palabraLongitud:
 		;RDI = p
 		xor al, al ;AL son los 8bits menos significativos de RAX
-			cmp byte [rdi], 0
-			je .fin
+		cmp byte [rdi], 0
+		je .fin
 		.ciclo:
-			inc al
-			inc rdi
-			cmp byte [rdi], 0
-			jnz .ciclo
+		inc al
+		inc rdi
+		cmp byte [rdi], 0
+		jnz .ciclo
 		.fin:
-			ret
+		ret
 
 	; bool palabraMenor( char *p1, char *p2 );
 	palabraMenor:
@@ -74,19 +75,19 @@ section .text
 		cmp al, 0 			;verifico que todavia no se acabo ninguna palabra
 		jz .falso			;notar que si al==0, [rsi] tambien
 		.ciclo:
-			inc rdi
-			inc rsi
-			mov al, byte[rdi] 
-			cmp al, [rsi]
-			jg .falso
-			jl .verdadero
-			cmp al, 0 			;verifico que todavia no se acabo ninguna palabra
-			jnz .ciclo			;notar que si al==0, [rsi] tambien
+		inc rdi
+		inc rsi
+		mov al, byte[rdi] 
+		cmp al, [rsi]
+		jg .falso
+		jl .verdadero
+		cmp al, 0 			;verifico que todavia no se acabo ninguna palabra
+		jnz .ciclo			;notar que si al==0, [rsi] tambien
 		.falso:
-			mov al, FALSE
-			jmp .fin
+		mov al, FALSE
+		jmp .fin
 		.verdadero:
-			mov al, TRUE
+		mov al, TRUE
 		.fin:	
 		ret
 
@@ -102,20 +103,58 @@ section .text
 
 	; void palabraImprimir( char *p, FILE *file );
 	palabraImprimir:
-		push rbp					;alineo stack
+		push rbp			
 		mov rbp, rsp
+		push r12
 
-		mov rax, rdi 			
-		mov rdi, rsi
-		mov rsi, rax
-		call fprintf	
-
+		cmp rdi, NULL	;si file==NULL, no hago nada
+		jz .fin
+		mov r12, rsi 			
+		mov rsi, rdi
+		mov rdi, r12
+		;sub rsp, 8		;alineo el stack
+		mov rax, 0
+		call fprintf
+		mov rdi, r12 	;por convención c, r12 se preservó
+		mov rsi, LF
+		;sub rsp, 8		;asi me da menos errores
+		mov rax, 0
+		call fprintf
+		.fin:
+		pop r12
 		pop rbp
 		ret	
 
-	; char *palabraCopiar( char *p );
+	;char *palabraCopiar( char *p );
 	palabraCopiar:
-		; COMPLETAR AQUI EL CODIGO
+		push rbp
+		mov rbp, rsp
+		push r12
+		push r13
+
+		mov r12, rdi 			;preservo p en R12
+		call palabraLongitud	;el resultado está en AL
+		xor rcx, rcx
+		mov cl, al
+		inc rcx 					;considero el char \0
+		;mov r13, rcx			;preservo rcx
+		mov rdi, rcx			
+		call malloc				;el resultado está en RAX
+		;mov rcx, r13
+		xor r13, r13
+		.ciclo:
+		mov dl, byte[r12]
+		mov byte[rax + r13], dl
+		inc r12
+		inc r13
+		loop .ciclo
+		
+		.fin:
+		pop r13
+		pop r12
+		pop rbp
+		ret
+
 
 
 ;/** FUNCIONES DE LISTA Y NODO **/
