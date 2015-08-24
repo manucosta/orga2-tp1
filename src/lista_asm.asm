@@ -105,6 +105,7 @@ section .text
 	palabraImprimir:
 		push rbp			
 		mov rbp, rsp
+		sub rsp, 8		;alineo el stack
 		push r12
 
 		cmp rdi, NULL	;si file==NULL, no hago nada
@@ -112,16 +113,17 @@ section .text
 		mov r12, rsi 			
 		mov rsi, rdi
 		mov rdi, r12
-		;sub rsp, 8		;alineo el stack
+		;sub rsp, 8		
 		mov rax, 0
 		call fprintf
 		mov rdi, r12 	;por convención c, r12 se preservó
 		mov rsi, LF
-		;sub rsp, 8		;asi me da menos errores
+		;sub rsp, 8		
 		mov rax, 0
 		call fprintf
 		.fin:
 		pop r12
+		add rsp, 8
 		pop rbp
 		ret	
 
