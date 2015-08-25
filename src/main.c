@@ -48,6 +48,15 @@ int main (void){
 	printf( "Palabra del Nodo: %s\n", miNodo->palabra );
 	nodoBorrar( miNodo );
 
+	//Testeo crear, borrar e imprimir listas
+	lista *miLista = oracionCrear();
+	insertarAtras(miLista, palabraCopiar("Hola"));
+	insertarAtras(miLista, palabraCopiar("mundo"));
+	insertarAtras(miLista, palabraCopiar("version"));
+	insertarAtras(miLista, palabraCopiar("lista"));
+	oracionImprimir( miLista, "/dev/stdout", palabraImprimir );
+	oracionBorrar( miLista );
+
 
 	return 0;
 }

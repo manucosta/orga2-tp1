@@ -50,16 +50,35 @@ char *palabraCopiar( char *p ){
 }
 **/
 
+/**
 nodo* nodoCrear( char *palabra ){
    nodo* pnodo = (nodo*) malloc(16);
-   pnodo->palabra = palabra;
    pnodo->siguiente = NULL;
+   pnodo->palabra = palabra;
    return pnodo; 
 }
+**/
 
+/**
 void nodoBorrar( nodo *n ){
    free(n->palabra);
-   n->palabra = NULL;
+   n->palabra = NULL; //¿Es necesario?
    free(n);
-   n = NULL;
+   n = NULL; //¿Es necesario?
+}
+**/
+
+void oracionImprimir( lista *l, char *archivo, void (*funcImprimirPalabra)(char*,FILE*) ){
+   FILE* file = fopen(archivo, "a");
+   if(l->primero == NULL) {
+      funcImprimirPalabra("<oracionVacia>",file);
+   }
+   else {
+      nodo* aux = l->primero;
+      while(aux != NULL) {
+         funcImprimirPalabra(aux->palabra, file);
+         aux = aux->siguiente;
+      }
+   }
+   fclose(file);
 }

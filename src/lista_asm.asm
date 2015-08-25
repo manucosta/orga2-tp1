@@ -24,18 +24,19 @@
 	extern insertarAtras
 	extern fprintf
 	extern malloc
+	extern free
 
 ; /** DEFINES **/    >> SE RECOMIENDA COMPLETAR LOS DEFINES CON LOS VALORES CORRECTOS
 	%define NULL 		0
 	%define TRUE 		1
 	%define FALSE 		0
 
-	%define LISTA_SIZE 	    	 0
+	%define LISTA_SIZE 	    	 8
 	%define OFFSET_PRIMERO 		 0
 
-	%define NODO_SIZE     		 0
+	%define NODO_SIZE     		 16
 	%define OFFSET_SIGUIENTE    0
-	%define OFFSET_PALABRA 		 0
+	%define OFFSET_PALABRA 		 8
 
 
 section .rodata
@@ -161,23 +162,87 @@ section .text
 ;-----------------------------------------------------------
 
 	; nodo *nodoCrear( char *palabra );
-	;nodoCrear:
-		;
+	nodoCrear:
+		push rbp
+		mov rbp, rsp
+		sub rsp, 8
+		push r12
+
+		mov r12, rdi
+		mov rdi, NODO_SIZE
+		call malloc
+		mov qword[rax + OFFSET_SIGUIENTE], NULL
+		mov [rax + OFFSET_PALABRA], r12
+
+		pop r12
+		add rsp, 8
+		pop rbp
+		ret
 
 	; void nodoBorrar( nodo *n );
-	;nodoBorrar:
-		; COMPLETAR AQUI EL CODIGO
+	nodoBorrar:
+		;Sólo funciona si la palabra que recibió
+		;nodoCrear fue alojada con malloc
+		push rbp
+		mov rbp, rsp
+		sub rsp, 8
+		push r12
+
+		mov r12, rdi
+		mov rdi, [r12 + OFFSET_PALABRA]
+		call free
+		mov rdi, r12
+		call free
+
+		pop r12
+		add rsp, 8
+		pop rbp
+		ret
+
+
 
 	; lista *oracionCrear( void );
 	oracionCrear:
-		; COMPLETAR AQUI EL CODIGO
+		push rbp
+		mov rbp, rsp
+
+		mov rdi, LISTA_SIZE
+		call malloc
+		mov qword[rax + OFFSET_PRIMERO], NULL
+
+		pop rbp
+		ret
+
 
 	; void oracionBorrar( lista *l );
 	oracionBorrar:
-		; COMPLETAR AQUI EL CODIGO
+		push rbp
+		mov rbp, rsp
+		push r12
+		push r13
+
+		mov r13, rdi 	;Preservo la lista
+		mov r12, [rdi + OFFSET_PRIMERO] ;R12 = l->primero
+
+		.ciclo:
+		cmp r12, NULL
+		jz .fin
+		mov rdi, r12
+		mov r12, [r12 + OFFSET_SIGUIENTE];Preservo el siguiente nodo en r12
+		call nodoBorrar
+		jmp .ciclo
+
+		.fin:
+		mov rdi, r13	;Hago free a la lista
+		call free
+
+		pop r13
+		pop r12
+		pop rbp
+		ret
 
 	; void oracionImprimir( lista *l, char *archivo, void (*funcImprimirPalabra)(char*,FILE*) );
-	oracionImprimir:
+	;oracionImprimir:
 		; COMPLETAR AQUI EL CODIGO
 
 
