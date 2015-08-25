@@ -68,6 +68,7 @@ void nodoBorrar( nodo *n ){
 }
 **/
 
+/*
 void oracionImprimir( lista *l, char *archivo, void (*funcImprimirPalabra)(char*,FILE*) ){
    FILE* file = fopen(archivo, "a");
    if(l->primero == NULL) {
@@ -82,3 +83,4 @@ void oracionImprimir( lista *l, char *archivo, void (*funcImprimirPalabra)(char*
    }
    fclose(file);
 }
+*/

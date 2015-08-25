@@ -22,7 +22,9 @@
 ; YA IMPLEMENTADAS EN C
 	extern palabraIgual
 	extern insertarAtras
+	extern fopen
 	extern fprintf
+	extern fclose
 	extern malloc
 	extern free
 
@@ -41,6 +43,8 @@
 
 section .rodata
 	LF: DB 10 		;puntero a string salto de línea
+	append: DB 'a' ;opción append para printf/fprintf
+	vacia: DB '<oracionVacia>'
 
 section .data
 
@@ -242,8 +246,47 @@ section .text
 		ret
 
 	; void oracionImprimir( lista *l, char *archivo, void (*funcImprimirPalabra)(char*,FILE*) );
-	;oracionImprimir:
-		; COMPLETAR AQUI EL CODIGO
+	oracionImprimir:
+		push rbp
+		mov rbp, rsp
+		sub rsp, 8
+		push r12
+		push r13
+		push r14
+
+		mov r12, [rdi + OFFSET_PRIMERO] 		;R12 = l->primero
+		mov r13, rdx		;R13 = funcImprimirPalabra
+		mov rdi, rsi
+		mov rsi, append 
+		call fopen			;RAX = (FILE*) file 
+
+		mov r14, rax 		;R14 = file
+		cmp r12, NULL
+		jnz .ciclo			;si l->primero != NULL, entrar al ciclo
+		;sino, imprimir <oracionVacia>
+		mov rdi, vacia
+		mov rsi, rax
+		call r13
+		jmp .fin
+
+		.ciclo:
+		mov rdi, [r12 + OFFSET_PALABRA]
+		mov rsi, r14
+		call r13
+		mov r12, [r12 + OFFSET_SIGUIENTE]
+		cmp r12, NULL
+		jnz .ciclo
+
+		.fin:
+		mov rdi, r14
+		call fclose			;cierro file
+		pop r14
+		pop r13
+		pop r12
+		add rsp, 8
+		pop rbp
+		ret
+
 
 
 ;/** FUNCIONES AVANZADAS **/
