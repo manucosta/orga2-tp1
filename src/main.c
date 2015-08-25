@@ -43,6 +43,11 @@ int main (void){
 	free( unaPalabra );
 	free( otraPalabra );
 	
+	//Testeo crear y borrar nodods
+	nodo *miNodo = nodoCrear( palabraCopiar("algunaPalabra") );
+	printf( "Palabra del Nodo: %s\n", miNodo->palabra );
+	nodoBorrar( miNodo );
+
 
 	return 0;
 }

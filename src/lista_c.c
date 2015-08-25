@@ -40,12 +40,26 @@ void palabraImprimir( char *p, FILE *file ){
 
 /**
 char *palabraCopiar( char *p ){
-  unsigned char n = palabraLongitud(p);
-  char* buffer = (char*) malloc(n+1);
-  for(int i = 0; i <= n; i++){
+   unsigned char n = palabraLongitud(p);
+   char* buffer = (char*) malloc(n+1);
+   for(int i = 0; i <= n; i++){
     buffer[i] = p[i];
   }
 
   return buffer;
 }
 **/
+
+nodo* nodoCrear( char *palabra ){
+   nodo* pnodo = (nodo*) malloc(16);
+   pnodo->palabra = palabra;
+   pnodo->siguiente = NULL;
+   return pnodo; 
+}
+
+void nodoBorrar( nodo *n ){
+   free(n->palabra);
+   n->palabra = NULL;
+   free(n);
+   n = NULL;
+}

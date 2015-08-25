@@ -105,20 +105,18 @@ section .text
 	palabraImprimir:
 		push rbp			
 		mov rbp, rsp
-		sub rsp, 8		;alineo el stack
+		sub rsp, 8		;para alinear el stack
 		push r12
 
 		cmp rdi, NULL	;si file==NULL, no hago nada
 		jz .fin
-		mov r12, rsi 			
+		mov r12, rsi 	;preservo file en r12	
 		mov rsi, rdi
 		mov rdi, r12
-		;sub rsp, 8		
 		mov rax, 0
 		call fprintf
 		mov rdi, r12 	;por convención c, r12 se preservó
 		mov rsi, LF
-		;sub rsp, 8		
 		mov rax, 0
 		call fprintf
 		.fin:
@@ -139,10 +137,10 @@ section .text
 		xor rcx, rcx
 		mov cl, al
 		inc rcx 					;considero el char \0
-		;mov r13, rcx			;preservo rcx
+		mov r13, rcx			;preservo rcx en r13
 		mov rdi, rcx			
 		call malloc				;el resultado está en RAX
-		;mov rcx, r13
+		mov rcx, r13
 		xor r13, r13
 		.ciclo:
 		mov dl, byte[r12]
@@ -163,11 +161,11 @@ section .text
 ;-----------------------------------------------------------
 
 	; nodo *nodoCrear( char *palabra );
-	nodoCrear:
-		; COMPLETAR AQUI EL CODIGO
+	;nodoCrear:
+		;
 
 	; void nodoBorrar( nodo *n );
-	nodoBorrar:
+	;nodoBorrar:
 		; COMPLETAR AQUI EL CODIGO
 
 	; lista *oracionCrear( void );
