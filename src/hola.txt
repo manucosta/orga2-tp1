@@ -1,4 +1,3 @@
 Hola
-a<oracionVacia>;Lmundo
-a<oracionVacia>;L!
-a<oracionVacia>;L
+mundo
+!

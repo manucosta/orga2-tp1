@@ -68,7 +68,7 @@ void nodoBorrar( nodo *n ){
 }
 **/
 
-/*
+/**
 void oracionImprimir( lista *l, char *archivo, void (*funcImprimirPalabra)(char*,FILE*) ){
    FILE* file = fopen(archivo, "a");
    if(l->primero == NULL) {
@@ -83,4 +83,20 @@ void oracionImprimir( lista *l, char *archivo, void (*funcImprimirPalabra)(char*
    }
    fclose(file);
 }
-*/
+**/
+
+/**
+float longitudMedia( lista *l ){
+  float acum = 0;
+  float tam = 0;
+  nodo* aux = l->primero;
+  if(aux == NULL) return 0;
+  while(aux != NULL) {
+      acum = acum + palabraLongitud(aux->palabra);
+      tam++;
+      aux = aux->siguiente;
+  }
+
+  return acum/tam;
+}
+**/

@@ -42,12 +42,11 @@
 
 
 section .rodata
-	LF: DB 10 		;puntero a string salto de línea
-	append: DB 'a' ;opción append para printf/fprintf
-	vacia: DB '<oracionVacia>'
+	LF: DB 10 , 0		;puntero a salto de línea
+	append: DB "a" ;opción append para printf/fprintf
+	vacia: DB "<oracionVacia>"
 
 section .data
-
 
 section .text
 
@@ -294,7 +293,43 @@ section .text
 
 	; float longitudMedia( lista *l );
 	longitudMedia:
-		; COMPLETAR AQUI EL CODIGO
+		push rbp
+		mov rbp, rsp
+		sub rsp, 8
+		push r12
+		push r13
+		push r14
+
+		xor r12, r12    ;r12 es mi acumulador
+		xor r13, r13	  ;r13 cuenta los elementos de la lista
+		mov r14, [rdi + OFFSET_PRIMERO] ;con r14 recorro la lista
+		pxor xmm0, xmm0  ;en xmm0 voy a devolver el resultado
+		cmp r14, NULL	;si l == NULL, devuelvo 0
+		jz .fin
+ 		
+ 		.ciclo:
+ 		mov rdi, [r14 + OFFSET_PALABRA]
+ 		call palabraLongitud
+ 		xor rsi, rsi
+ 		mov sil, al
+ 		add r12, rsi
+ 		inc r13
+ 		mov r14, [r14 + OFFSET_SIGUIENTE]
+ 		cmp r14, NULL
+ 		jnz .ciclo
+ 		
+ 		.fin:
+ 		cvtsi2ss xmm0, r12 
+ 		cvtsi2ss xmm1, r13
+ 		divss xmm0, xmm1
+
+ 		pop r14
+ 		pop r13
+ 		pop r12
+ 		add rsp, 8
+ 		pop rbp
+ 		ret
+
 
 	; void insertarOrdenado( lista *l, char *palabra, bool (*funcCompararPalabra)(char*,char*) );
 	insertarOrdenado:
