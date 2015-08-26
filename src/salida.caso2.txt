@@ -1,0 +1,13 @@
+>>>>>>>>>>>>>>>> PROBANDO INSERTAR-ORDENADO y ORACION-IMPRIMIR
+<oracionVacia>
+>>>>>>>>>>>>>>>> PROBANDO LONGITUD-MEDIA
+longitudMedia: -nan
+>>>>>>>>>>>>>>>> PROBANDO PALABRA-FILTRAR
+<oracionVacia>
+<oracionVacia>
+Ana
+Ana
+Ana
+>>>>>>>>>>>>>>>> PROBANDO MENSAJE DIABOLICO
+>>>>>>>>>>>>>>>> PROBANDO ORACION-BORRAR
+Ana

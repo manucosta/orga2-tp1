@@ -1,0 +1,33 @@
+>>>>>>>>>>>>>>>> PROBANDO PALABRA-LONGITUD
+0
+1
+4
+>>>>>>>>>>>>>>>> PROBANDO PALABRA-MENOR
+merced < mercurio: TRUE
+perro < zorro: TRUE
+senior < seniora: TRUE
+seniora < senior: FALSE
+caZa < casa: TRUE
+hola < hola: FALSE
+merced < merc2d: FALSE
+>>>>>>>>>>>>>>>> PROBANDO PALABRA-FORMATEAR
+666hOlA777
+777iPmA888
+>>>>>>>>>>>>>>>> PROBANDO PALABRA-IMPRIMIR
+palabraAImprimir
+
+>>>>>>>>>>>>>>>> PROBANDO PALABRA-COPIAR
+palabraACopiar
+palabraACopiar
+palXbraACopiar
+palabrWACopiar
+
+>>>>>>>>>>>>>>>> PROBANDO INSERTAR-ORDENADO y ORACION-IMPRIMIR
+<oracionVacia>
+>>>>>>>>>>>>>>>> PROBANDO LONGITUD-MEDIA, ORACION-CREAR y ORACION-BORRAR
+longitudMedia: -nan
+longitudMedia: -nan
+>>>>>>>>>>>>>>>> PROBANDO PALABRA-FILTRAR
+<oracionVacia>
+<oracionVacia>
+>>>>>>>>>>>>>>>> PROBANDO MENSAJE DIABOLICO

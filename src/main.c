@@ -73,5 +73,16 @@ int main (void){
 	printf( "LongMedia = %2.5f\n", longitudMedia(miLista2));
 	oracionBorrar(miLista2);
 
+	//Testeo insertarOrdenada
+	printf("\nTESTEO insertarOrdenada\n");
+	lista *miLista3 = oracionCrear();
+	insertarOrdenado( miLista3, palabraCopiar( "palabra2" ), palabraMenor );
+	insertarOrdenado( miLista3, palabraCopiar( "palabra1" ), palabraMenor );
+	insertarOrdenado( miLista3, palabraCopiar( "palabra4" ), palabraMenor );
+	insertarOrdenado( miLista3, palabraCopiar( "palabra2" ), palabraMenor );
+	insertarOrdenado( miLista3, palabraCopiar( "palabra3" ), palabraMenor );
+	oracionImprimir( miLista3, "/dev/stdout", palabraImprimir );
+	oracionBorrar(miLista3);
+
 	return 0;
 }

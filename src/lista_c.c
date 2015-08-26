@@ -100,3 +100,23 @@ float longitudMedia( lista *l ){
   return acum/tam;
 }
 **/
+
+void insertarOrdenado( lista *l, char *palabra, bool (*funcCompararPalabra)(char*,char*) ){
+  if(l->primero == NULL){
+    insertarAtras(l, palabra);
+  }else{
+    nodo* nuevo = nodoCrear(palabra);
+    nodo* anterior = NULL;
+    nodo* actual = l->primero;
+    while(actual != NULL && funcCompararPalabra(actual->palabra, nuevo->palabra)){
+      anterior = actual;
+      actual = actual->siguiente;
+    }
+    nuevo->siguiente = actual;
+    if(anterior != NULL){
+      anterior->siguiente = nuevo;
+    }else{
+      l->primero = nuevo;
+    }
+  }
+}

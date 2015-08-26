@@ -333,7 +333,33 @@ section .text
 
 	; void insertarOrdenado( lista *l, char *palabra, bool (*funcCompararPalabra)(char*,char*) );
 	insertarOrdenado:
-		; COMPLETAR AQUI EL CODIGO
+		push rbp
+		mov rbp, rsp
+
+		;Veo si l es vacia
+		cmp [rdi + OFFSET_PRIMERO], NULL
+		jnz .noVacia
+		;Caso l vacia
+		;RDI ya tiene l y RSI ya tiene palabra
+		call insertarAtras
+		jmp .fin
+
+		;Caso l no vacia
+		.noVacia:
+		mov r12, rdi 	;R12 = l 
+		mov r13, rdx 	;r13 = funcCompararPalabra
+		mov rdi, r13
+		call nodoCrear
+		mov rbx, rax 	;RBX = ptr nodo nuevo
+		mov r14, NULL   ;R14 = ptr al nodo anterior
+		mov r15, [r12 + OFFSET_PRIMERO] ;R15 = ptr al nodo actual
+		.ciclo:
+		cmp r15, NULL
+		jz asignacion
+		mov rdi, [r15 + OFFSET_PALABRA]
+		mov rsi, [rbx + OFFSET_PALABRA]
+		call funcCompararPalabra
+		
 
 	; void filtrarAltaLista( lista *l, bool (*funcCompararPalabra)(char*,char*), char *palabraCmp );
 	filtrarPalabra:

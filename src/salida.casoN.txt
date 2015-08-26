@@ -1,0 +1,15 @@
+>>>>>>>>>>>>>>>> PROBANDO INSERTAR-ORDENADO y ORACION-IMPRIMIR
+Hice a mi cuerpo amigo del cielo y la distacia y me fui a buscarle una verdad a mi corazon Algo tan grande como el cielo y las montanias y tan pequenio como una gota de rocio Y ya no estubo mas conmigo mi corazon se fue a posar en cada una de las cosas se fue a fundir con la escencia y la sabia Y ahora solo un camino he de caminar cualquier camino que tenga corazon Atravezando todo su largo sin aliento dejando atraz mil razones en el tiempo Morir queriendo ser libre encontrar mi lado salvaje ponerle alas a mi destino romper los dientes de este engranaje Hice un lugar en el refugio de mis suenios y guarde ahi mi tesoro mas preciado Donde no llega el hombre con sus jaulas ni la maquinaria de la supervivencia Me fue mas facil intentar la vida que venderla al intelecto y la conformidad ...
+<oracionVacia>
+>>>>>>>>>>>>>>>> PROBANDO LONGITUD-MEDIA
+longitudMedia: 4.14935
+longitudMedia: -nan
+>>>>>>>>>>>>>>>> PROBANDO PALABRA-FILTRAR
+Hice a mi cuerpo amigo del cielo y la distacia y me fui a buscarle una verdad a mi corazon Algo tan grande como el cielo y las montanias y tan pequenio como una gota de rocio Y ya no estubo mas conmigo mi corazon se fue a posar en cada una de las cosas se fue a fundir con la escencia y la sabia Y ahora solo un camino he de caminar cualquier camino que tenga corazon Atravezando todo su largo sin aliento dejando atraz mil razones en el tiempo Morir queriendo ser libre encontrar mi lado salvaje ponerle alas a mi destino romper los dientes de este engranaje Hice un lugar en el refugio de mis suenios y guarde ahi mi tesoro mas preciado Donde no llega el hombre con sus jaulas ni la maquinaria de la supervivencia Me fue mas facil intentar la vida que venderla al intelecto y la conformidad ...
+<oracionVacia>
+>>>>>>>>>>>>>>>> PROBANDO LONGITUD-MEDIA
+longitudMedia: 4.14935
+longitudMedia: -nan
+>>>>>>>>>>>>>>>> PROBANDO MENSAJE DIABOLICO
+...
+>>>>>>>>>>>>>>>> PROBANDO ORACION-BORRAR
