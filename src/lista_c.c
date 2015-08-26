@@ -122,3 +122,24 @@ void insertarOrdenado( lista *l, char *palabra, bool (*funcCompararPalabra)(char
   }
 }
 **/
+
+/**
+void filtrarPalabra( lista *l, bool (*funcCompararPalabra)(char*,char*), char *palabraCmp ){
+   nodo* anterior = NULL;
+   nodo* actual = l->primero;
+   while(actual != NULL) {
+      nodo* proximo = actual->siguiente;
+      if(funcCompararPalabra(actual->palabra, palabraCmp)) {
+         if(anterior == NULL) l->primero = actual;
+         anterior = actual;
+      }
+      else {
+         if(anterior != NULL) anterior->siguiente = proximo;
+         nodoBorrar(actual);
+      }
+      actual = proximo;
+   }
+   
+   if(anterior == NULL) l->primero = NULL; //me quedó la lista vacia
+}
+**/

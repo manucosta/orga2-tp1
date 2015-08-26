@@ -29,6 +29,7 @@ int main (void){
 	printf("%s\n", p);
 
 	//Testeo palabraImprimir
+	
 	printf("\nTESTEO palabraImprimir\n");
 	FILE * pfile = fopen("hola.txt", "w");
 	palabraImprimir(p, pfile);
@@ -83,6 +84,34 @@ int main (void){
 	insertarOrdenado( miLista3, palabraCopiar( "palabra3" ), palabraMenor );
 	oracionImprimir( miLista3, "/dev/stdout", palabraImprimir );
 	oracionBorrar(miLista3);
+
+	//Testeo filtrarPalabra
+	printf("\nTESTEO filtrarPalabra\n");
+	lista *miLista4 = oracionCrear();
+	insertarOrdenado( miLista4, palabraCopiar( "palabra1" ), palabraMenor);
+	insertarOrdenado( miLista4, palabraCopiar( "palabra2" ),	palabraMenor);
+	insertarOrdenado( miLista4, palabraCopiar( "palabra1" ), palabraMenor);
+	insertarOrdenado( miLista4, palabraCopiar( "palabra3" ), palabraMenor);
+	insertarOrdenado( miLista4, palabraCopiar( "Palabra8" ), palabraMenor);
+
+	filtrarPalabra( miLista4, palabraMenor, "palabra3" );
+	printf("Filtrar menores que palabra3:\n");
+	oracionImprimir( miLista4, "/dev/stdout", palabraImprimir);
+
+	filtrarPalabra( miLista4, palabraIgual, "palabra1" );
+	printf("Filtrar iguales que palabra1:\n");
+	oracionImprimir( miLista4, "/dev/stdout", palabraImprimir);
+
+	filtrarPalabra( miLista4, palabraIgual, "palabra4" );
+	printf("Filtrar iguales que palabra4:\n");
+	oracionImprimir( miLista4, "/dev/stdout", palabraImprimir);
+
+	filtrarPalabra( miLista4, palabraMenor, "palabra4" );
+	printf("Filtrar menores que palabra4:\n");
+	oracionImprimir( miLista4, "/dev/stdout", palabraImprimir);
+
+	oracionBorrar(miLista4);
+
 
 	return 0;
 }

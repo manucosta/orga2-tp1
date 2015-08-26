@@ -398,7 +398,61 @@ section .text
 
 	; void filtrarAltaLista( lista *l, bool (*funcCompararPalabra)(char*,char*), char *palabraCmp );
 	filtrarPalabra:
-		; COMPLETAR AQUI EL CODIGO
+		push rbp
+		mov rbp, rsp
+		sub rsp, 8
+		push rbx
+		push r12
+		push r13
+		push r14
+		push r15
+
+		mov rbx, rdi 					;RBX = l->primero
+		mov r12, rsi 					;R12 = funcComparar
+		mov r13, rdx 					;R13 = palabraCmp
+		mov r14, NULL					;R14 = (nodo*) anterior
+		mov r15, [rbx + OFFSET_PRIMERO] ;R15 = (nodo*) actual
+		.ciclo:
+		cmp r15, NULL
+		jz .fin
+		mov rdi, [r15 + OFFSET_PALABRA]
+		mov rsi, r13
+		call r12
+		cmp al, TRUE
+		jnz .quitarNodo
+		cmp r14, NULL
+		jnz .salto1
+		mov [rbx + OFFSET_PRIMERO], r15
+		.salto1:
+		mov r14, r15								;avanzo anterior
+		mov r15, [r15 + OFFSET_SIGUIENTE]	;avanzo actual
+		jmp .ciclo
+
+		.quitarNodo:
+		cmp r14, NULL
+		jz .salto2
+		mov rdx, [r15 + OFFSET_SIGUIENTE]
+		mov [r14 + OFFSET_SIGUIENTE], rdx
+		.salto2:
+		mov rdi, r15						;guardo la ref a actual para borrarlo
+		mov r15, [r15 + OFFSET_SIGUIENTE]  ;avanzo actual 
+		call nodoBorrar
+		jmp .ciclo
+
+		.fin:
+		cmp r14, NULL
+		jnz .salto3
+		mov qword[rbx + OFFSET_PRIMERO], NULL
+		.salto3:
+		pop r15
+		pop r14
+		pop r13
+		pop r12
+		pop rbx
+		add rsp, 8
+		pop rbp
+		ret
+
 
 	; void descifrarMensajeDiabolico( lista *l, char *archivo, void (*funcImpPbr)(char*,FILE* ) );
 	descifrarMensajeDiabolico:
