@@ -77,7 +77,7 @@ int main (void){
 	printf("\nTESTEO insertarOrdenada\n");
 	lista *miLista3 = oracionCrear();
 	insertarOrdenado( miLista3, palabraCopiar( "palabra2" ), palabraMenor );
-	insertarOrdenado( miLista3, palabraCopiar( "palabra1" ), palabraMenor );
+	insertarOrdenado( miLista3, palabraCopiar( "palabra1" ), palabraMenor );//se rompe al agregar el segundo elemento
 	insertarOrdenado( miLista3, palabraCopiar( "palabra4" ), palabraMenor );
 	insertarOrdenado( miLista3, palabraCopiar( "palabra2" ), palabraMenor );
 	insertarOrdenado( miLista3, palabraCopiar( "palabra3" ), palabraMenor );

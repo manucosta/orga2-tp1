@@ -101,6 +101,7 @@ float longitudMedia( lista *l ){
 }
 **/
 
+/**
 void insertarOrdenado( lista *l, char *palabra, bool (*funcCompararPalabra)(char*,char*) ){
   if(l->primero == NULL){
     insertarAtras(l, palabra);
@@ -120,3 +121,4 @@ void insertarOrdenado( lista *l, char *palabra, bool (*funcCompararPalabra)(char
     }
   }
 }
+**/

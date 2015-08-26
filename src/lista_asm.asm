@@ -333,11 +333,19 @@ section .text
 
 	; void insertarOrdenado( lista *l, char *palabra, bool (*funcCompararPalabra)(char*,char*) );
 	insertarOrdenado:
+	;me queda pendiente refinar el codigo
+	;de esta funcion
 		push rbp
 		mov rbp, rsp
+		sub rsp, 8
+		push rbx
+		push r12
+		push r13
+		push r14
+		push r15
 
 		;Veo si l es vacia
-		cmp [rdi + OFFSET_PRIMERO], NULL
+		cmp qword[rdi + OFFSET_PRIMERO], NULL
 		jnz .noVacia
 		;Caso l vacia
 		;RDI ya tiene l y RSI ya tiene palabra
@@ -348,17 +356,44 @@ section .text
 		.noVacia:
 		mov r12, rdi 	;R12 = l 
 		mov r13, rdx 	;r13 = funcCompararPalabra
-		mov rdi, r13
+		mov rdi, rsi 	;RDI = palabra
 		call nodoCrear
 		mov rbx, rax 	;RBX = ptr nodo nuevo
-		mov r14, NULL   ;R14 = ptr al nodo anterior
+		mov r14, NULL  ;R14 = ptr al nodo anterior
 		mov r15, [r12 + OFFSET_PRIMERO] ;R15 = ptr al nodo actual
 		.ciclo:
 		cmp r15, NULL
-		jz asignacion
+		jz .asignacion
 		mov rdi, [r15 + OFFSET_PALABRA]
 		mov rsi, [rbx + OFFSET_PALABRA]
-		call funcCompararPalabra
+		call r13 		;Resultado en al
+		cmp al, FALSE
+		jz .asignacion
+		mov r14, r15
+		mov r15, [r15 + OFFSET_SIGUIENTE]
+		jmp .ciclo
+
+		.asignacion:
+		mov [rbx + OFFSET_SIGUIENTE], r15
+		cmp r14, NULL
+		jz .agregarPrimero
+		mov [r14 + OFFSET_SIGUIENTE], rbx
+		jmp .fin
+
+		.agregarPrimero:
+		mov [r12 + OFFSET_PRIMERO], rbx
+
+		.fin:
+		pop r15
+		pop r14
+		pop r13
+		pop r12
+		pop rbx
+		add rsp, 8
+		pop rbp
+		ret
+
+
 		
 
 	; void filtrarAltaLista( lista *l, bool (*funcCompararPalabra)(char*,char*), char *palabraCmp );
