@@ -45,6 +45,7 @@ section .rodata
 	LF: DB 10 , 0		;puntero a salto de línea
 	append: DB "a" ;opción append para printf/fprintf
 	vacia: DB "<oracionVacia>"
+	sinMD: DB "<sinMensajeDiabolico>"
 
 section .data
 
@@ -456,4 +457,74 @@ section .text
 
 	; void descifrarMensajeDiabolico( lista *l, char *archivo, void (*funcImpPbr)(char*,FILE* ) );
 	descifrarMensajeDiabolico:
-		; COMPLETAR AQUI EL CODIGO
+		push rbp
+		mov rbp, rsp
+		push r12
+		push r13
+		push r14
+
+		mov r12, [rdi + OFFSET_PRIMERO] 	;R12 = l->primero
+		mov r13, rdx 							;R13 = funcImpPbr 
+		mov rdi, rsi 							;RDI = archivo
+		mov rsi, append						;[RSI] = "a"
+		sub rsp, 8								;alineo stack
+		call fopen
+		add rsp, 8
+		mov r14, rax 							;R14 = (*FILE) file
+		cmp r12, NULL
+		jz .listaVacia
+		xor rcx, rcx
+		.cicloPush:
+		push r12
+		mov r12, [r12 + OFFSET_SIGUIENTE]
+		inc rcx									;RCX cuenta la cant de palabras de la oración == cant de push
+		cmp r12, NULL
+		jnz .cicloPush
+
+		;cuando rcx es par tengo que alinear el stack
+		;antes del call r13
+		mov rax, rcx
+		and al, 0x01
+		cmp al, 0
+		jz .cicloPopPar
+
+		;TODO: Hacer una auxiliar que decida si un int es par
+
+		.cicloPopImpar:
+		pop r12
+		mov rdi, [r12 + OFFSET_PALABRA]
+		mov rsi, r14
+		push rcx
+		call r13
+		pop rcx
+		loop .cicloPopPar
+		jmp .fin
+
+		.cicloPopPar:
+		pop r12
+		mov rdi, [r12 + OFFSET_PALABRA]
+		mov rsi, r14
+		push rcx
+		sub rsp, 8
+		call r13
+		add rsp, 8
+		pop rcx
+		loop .cicloPopImpar
+		jmp .fin
+
+		.listaVacia:
+		mov rdi, sinMD
+		mov rsi, r14
+		sub rsp, 8
+		call r13
+		add rsp, 8
+
+		.fin:
+		mov rdi, r14
+		call fclose
+		pop r14
+		pop r13
+		pop r12
+		pop rbp
+		ret
+

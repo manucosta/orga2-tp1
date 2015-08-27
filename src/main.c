@@ -89,7 +89,7 @@ int main (void){
 	printf("\nTESTEO filtrarPalabra\n");
 	lista *miLista4 = oracionCrear();
 	insertarOrdenado( miLista4, palabraCopiar( "palabra1" ), palabraMenor);
-	insertarOrdenado( miLista4, palabraCopiar( "palabra2" ),	palabraMenor);
+	insertarOrdenado( miLista4, palabraCopiar( "palabra2" ), palabraMenor);
 	insertarOrdenado( miLista4, palabraCopiar( "palabra1" ), palabraMenor);
 	insertarOrdenado( miLista4, palabraCopiar( "palabra3" ), palabraMenor);
 	insertarOrdenado( miLista4, palabraCopiar( "Palabra8" ), palabraMenor);
@@ -112,6 +112,31 @@ int main (void){
 
 	oracionBorrar(miLista4);
 
+	//Testeo descifrarMensajeDiabolico
+	printf("\nTESTEO descifrarMensajeDiabolico\n");
+	
+	printf("Descifrar lista vacía:\n");
+	lista *listaVacia = oracionCrear();
+	descifrarMensajeDiabolico(listaVacia, "/dev/stdout", palabraImprimir);
+	
+	printf("Descifrar lista corta:\n");
+	lista *unico = oracionCrear();
+	insertarOrdenado( unico, palabraCopiar( "palabra1" ), palabraMenor);
+	descifrarMensajeDiabolico(unico, "/dev/stdout", palabraImprimir);
+
+	printf("Descifrar lista mediana:\n");
+	lista *miLista5 = oracionCrear();
+	insertarOrdenado( miLista5, palabraCopiar( "palabra1" ), palabraMenor);
+	insertarOrdenado( miLista5, palabraCopiar( "palabra2" ), palabraMenor);
+	insertarOrdenado( miLista5, palabraCopiar( "palabra1" ), palabraMenor);
+	insertarOrdenado( miLista5, palabraCopiar( "palabra3" ), palabraMenor);
+	insertarOrdenado( miLista5, palabraCopiar( "Palabra8" ), palabraMenor);
+
+	descifrarMensajeDiabolico(miLista5, "/dev/stdout", palabraImprimir);
+
+	oracionBorrar(listaVacia);
+	oracionBorrar(unico);
+	oracionBorrar(miLista5);
 
 	return 0;
 }
