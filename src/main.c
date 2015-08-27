@@ -68,6 +68,7 @@ int main (void){
 	//Testeo longitudMedia
 	printf("\nTESTEO longitudMedia\n");
 	lista *miLista2 = oracionCrear();
+	printf( "LongMedia = %2.5f\n", longitudMedia(miLista2));
 	insertarAtras(miLista2, palabraCopiar("cinco"));
 	insertarAtras(miLista2, palabraCopiar(""));
 	insertarAtras(miLista2, palabraCopiar("tengodiezz"));

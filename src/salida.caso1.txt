@@ -23,11 +23,13 @@ palXbraACopiar
 palabrWACopiar
 
 >>>>>>>>>>>>>>>> PROBANDO INSERTAR-ORDENADO y ORACION-IMPRIMIR
-<oracionVacia>
+hola
 >>>>>>>>>>>>>>>> PROBANDO LONGITUD-MEDIA, ORACION-CREAR y ORACION-BORRAR
-longitudMedia: -nan
-longitudMedia: -nan
+longitudMedia: 0.00000
+longitudMedia: 4.00000
 >>>>>>>>>>>>>>>> PROBANDO PALABRA-FILTRAR
-<oracionVacia>
+hola
 <oracionVacia>
 >>>>>>>>>>>>>>>> PROBANDO MENSAJE DIABOLICO
+777iPmA888
+<sinMensajeDiabolico>

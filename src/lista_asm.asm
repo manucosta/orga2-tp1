@@ -44,8 +44,8 @@
 section .rodata
 	LF: DB 10 , 0		;puntero a salto de línea
 	append: DB "a" ;opción append para printf/fprintf
-	vacia: DB "<oracionVacia>"
-	sinMD: DB "<sinMensajeDiabolico>"
+	vacia: DB "<oracionVacia>" , 0
+	sinMD: DB "<sinMensajeDiabolico>" , 0
 
 section .data
 
@@ -306,7 +306,7 @@ section .text
 		mov r14, [rdi + OFFSET_PRIMERO] ;con r14 recorro la lista
 		pxor xmm0, xmm0  ;en xmm0 voy a devolver el resultado
 		cmp r14, NULL	;si l == NULL, devuelvo 0
-		jz .fin
+		jz .listaVacia
  		
  		.ciclo:
  		mov rdi, [r14 + OFFSET_PALABRA]
@@ -318,6 +318,10 @@ section .text
  		mov r14, [r14 + OFFSET_SIGUIENTE]
  		cmp r14, NULL
  		jnz .ciclo
+ 		jmp .fin
+
+ 		.listaVacia:
+ 		mov r13, 1
  		
  		.fin:
  		cvtsi2ss xmm0, r12 

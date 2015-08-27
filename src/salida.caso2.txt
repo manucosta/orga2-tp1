@@ -1,13 +1,19 @@
 >>>>>>>>>>>>>>>> PROBANDO INSERTAR-ORDENADO y ORACION-IMPRIMIR
-<oracionVacia>
+Abelu
+Agustina
 >>>>>>>>>>>>>>>> PROBANDO LONGITUD-MEDIA
-longitudMedia: -nan
+longitudMedia: 6.50000
 >>>>>>>>>>>>>>>> PROBANDO PALABRA-FILTRAR
+Abelu
 <oracionVacia>
+Juana
+Ana
+Ana
 <oracionVacia>
-Ana
-Ana
-Ana
 >>>>>>>>>>>>>>>> PROBANDO MENSAJE DIABOLICO
+hola2
+hola1
+<sinMensajeDiabolico>
 >>>>>>>>>>>>>>>> PROBANDO ORACION-BORRAR
-Ana
+hola1
+hola2
