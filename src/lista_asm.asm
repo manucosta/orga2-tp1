@@ -42,8 +42,8 @@
 
 
 section .rodata
-	LF: DB 10 , 0		;puntero a salto de línea
-	append: DB "a" ;opción append para printf/fprintf
+	LF: DB 10 , 0	;puntero a salto de línea
+	append: DB "a", 0 ;opción append para printf/fprintf
 	vacia: DB "<oracionVacia>" , 0
 	sinMD: DB "<sinMensajeDiabolico>" , 0
 
@@ -57,37 +57,30 @@ section .text
 
 	; unsigned char palabraLongitud( char *p );
 	palabraLongitud:
-		;RDI = p
-		xor al, al ;AL son los 8bits menos significativos de RAX
+		xor al, al 			;Sólo devuelvo un byte, así que uso AL
 		cmp byte [rdi], 0
 		je .fin
 		.ciclo:
-		inc al
-		inc rdi
-		cmp byte [rdi], 0
-		jnz .ciclo
+			inc al
+			inc rdi
+			cmp byte [rdi], 0
+			jnz .ciclo
 		.fin:
 		ret
 
 	; bool palabraMenor( char *p1, char *p2 );
 	palabraMenor:
-		;RDI = p1
-		;RSI = p2
-		mov al, byte[rdi] 
-		cmp al, [rsi]
-		jg .falso
-		jl .verdadero
-		cmp al, 0 			;verifico que todavia no se acabo ninguna palabra
-		jz .falso			;notar que si al==0, [rsi] tambien
 		.ciclo:
-		inc rdi
-		inc rsi
-		mov al, byte[rdi] 
-		cmp al, [rsi]
-		jg .falso
-		jl .verdadero
-		cmp al, 0 			;verifico que todavia no se acabo ninguna palabra
-		jnz .ciclo			;notar que si al==0, [rsi] tambien
+			mov al, [rdi] 
+			cmp al, [rsi]
+			jg .falso
+			jl .verdadero
+			cmp al, 0 			;verifico que todavía no se acabó ninguna palabra
+			jz .falso			;notar que si al==0, [rsi] tambien
+			inc rdi
+			inc rsi
+			jmp .ciclo
+
 		.falso:
 		mov al, FALSE
 		jmp .fin
@@ -97,10 +90,9 @@ section .text
 		ret
 
 
-
 	; void palabraFormatear( char *p, void (*funcModificarString)(char*) );
 	palabraFormatear:
-		push rbp					;alineo el stack
+		push rbp			;alíneo el stack
 		mov rbp, rsp
 		call rsi
 		pop rbp
@@ -113,17 +105,18 @@ section .text
 		sub rsp, 8		;para alinear el stack
 		push r12
 
-		cmp rdi, NULL	;si file==NULL, no hago nada
-		jz .fin
-		mov r12, rsi 	;preservo file en r12	
-		mov rsi, rdi
-		mov rdi, r12
-		mov rax, 0
+		cmp rdi, NULL	;si file==NULL,
+		jz .fin 			;no hago nada
+		mov r12, rsi 	;R12 = file	
+		mov rsi, rdi 	;RSI = p
+		mov rdi, r12	;RDI = file
+		mov rax, 0		;no le paso floats a fprintf
 		call fprintf
-		mov rdi, r12 	;por convención c, r12 se preservó
+		mov rdi, r12 	;por convención c, R12 se preservó
 		mov rsi, LF
 		mov rax, 0
-		call fprintf
+		call fprintf	;imprime el salto de línea
+		
 		.fin:
 		pop r12
 		add rsp, 8
@@ -137,22 +130,22 @@ section .text
 		push r12
 		push r13
 
-		mov r12, rdi 			;preservo p en R12
+		mov r12, rdi 			;R12 = p
 		call palabraLongitud	;el resultado está en AL
 		xor rcx, rcx
 		mov cl, al
 		inc rcx 					;considero el char \0
-		mov r13, rcx			;preservo rcx en r13
+		mov r13, rcx			;preservo RCX en R13
 		mov rdi, rcx			
-		call malloc				;el resultado está en RAX
-		mov rcx, r13
-		xor r13, r13
+		call malloc				;RAX = (char*) copia
+		mov rcx, r13			;restauro RCX
+		xor r13, r13			;R13 pasa a ser un índice
 		.ciclo:
-		mov dl, byte[r12]
-		mov byte[rax + r13], dl
-		inc r12
-		inc r13
-		loop .ciclo
+			mov dl, byte[r12]
+			mov byte[rax + r13], dl
+			inc r12
+			inc r13
+			loop .ciclo
 		
 		.fin:
 		pop r13
@@ -170,39 +163,33 @@ section .text
 		push rbp
 		mov rbp, rsp
 		sub rsp, 8
-		push r12
 
-		mov r12, rdi
+		push rdi
 		mov rdi, NODO_SIZE
 		call malloc
 		mov qword[rax + OFFSET_SIGUIENTE], NULL
-		mov [rax + OFFSET_PALABRA], r12
+		pop rdi
+		mov [rax + OFFSET_PALABRA], rdi
 
-		pop r12
 		add rsp, 8
 		pop rbp
 		ret
 
 	; void nodoBorrar( nodo *n );
 	nodoBorrar:
-		;Sólo funciona si la palabra que recibió
-		;nodoCrear fue alojada con malloc
 		push rbp
 		mov rbp, rsp
 		sub rsp, 8
-		push r12
 
-		mov r12, rdi
-		mov rdi, [r12 + OFFSET_PALABRA]
+		push rdi
+		mov rdi, [rdi + OFFSET_PALABRA]
 		call free
-		mov rdi, r12
+		pop rdi
 		call free
 
-		pop r12
 		add rsp, 8
 		pop rbp
 		ret
-
 
 
 	; lista *oracionCrear( void );
@@ -223,24 +210,24 @@ section .text
 		push rbp
 		mov rbp, rsp
 		push r12
-		push r13
 
-		mov r13, rdi 	;Preservo la lista
-		mov r12, [rdi + OFFSET_PRIMERO] ;R12 = l->primero
+		push rdi 	 								;preservo la lista
+		mov r12, [rdi + OFFSET_PRIMERO] 		;R12 = l->primero
 
 		.ciclo:
-		cmp r12, NULL
-		jz .fin
-		mov rdi, r12
-		mov r12, [r12 + OFFSET_SIGUIENTE];Preservo el siguiente nodo en r12
-		call nodoBorrar
-		jmp .ciclo
+			cmp r12, NULL
+			jz .fin
+			mov rdi, r12
+			mov r12, [r12 + OFFSET_SIGUIENTE]	;R12 = nodoActual->siguiente
+			call nodoBorrar
+			jmp .ciclo
 
 		.fin:
-		mov rdi, r13	;Hago free a la lista
+		pop rdi 		;recupero la lista
+		sub rsp, 8	;alineo stack
 		call free
+		add rsp, 8
 
-		pop r13
 		pop r12
 		pop rbp
 		ret
@@ -255,27 +242,27 @@ section .text
 		push r14
 
 		mov r12, [rdi + OFFSET_PRIMERO] 		;R12 = l->primero
-		mov r13, rdx		;R13 = funcImprimirPalabra
+		mov r13, rdx								;R13 = funcImprimirPalabra
 		mov rdi, rsi
 		mov rsi, append 
-		call fopen			;RAX = (FILE*) file 
+		call fopen									;RAX = (FILE*) file 
 
-		mov r14, rax 		;R14 = file
+		mov r14, rax 								;R14 = file
 		cmp r12, NULL
-		jnz .ciclo			;si l->primero != NULL, entrar al ciclo
-		;sino, imprimir <oracionVacia>
+		jnz .ciclo									;si l->primero != NULL, entrar al ciclo
+		;caso lista vacía
 		mov rdi, vacia
-		mov rsi, rax
+		mov rsi, r14
 		call r13
 		jmp .fin
 
 		.ciclo:
-		mov rdi, [r12 + OFFSET_PALABRA]
-		mov rsi, r14
-		call r13
-		mov r12, [r12 + OFFSET_SIGUIENTE]
-		cmp r12, NULL
-		jnz .ciclo
+			mov rdi, [r12 + OFFSET_PALABRA]
+			mov rsi, r14
+			call r13
+			mov r12, [r12 + OFFSET_SIGUIENTE]
+			cmp r12, NULL
+			jnz .ciclo
 
 		.fin:
 		mov rdi, r14
@@ -301,33 +288,29 @@ section .text
 		push r13
 		push r14
 
-		xor r12, r12    ;r12 es mi acumulador
-		xor r13, r13	  ;r13 cuenta los elementos de la lista
-		mov r14, [rdi + OFFSET_PRIMERO] ;con r14 recorro la lista
-		pxor xmm0, xmm0  ;en xmm0 voy a devolver el resultado
-		cmp r14, NULL	;si l == NULL, devuelvo 0
-		jz .listaVacia
+		xor r12, r12     						;R12 es mi acumulador
+		xor r13, r13	  						;R13 cuenta los elementos de la lista
+		mov r14, [rdi + OFFSET_PRIMERO]  ;con R14 recorro la lista
+		pxor xmm0, xmm0  						;en xmm0 voy a devolver el resultado
+		cmp r14, NULL							;si l == NULL, devuelvo xmm0 = 0
+		jz .fin 	
  		
  		.ciclo:
- 		mov rdi, [r14 + OFFSET_PALABRA]
- 		call palabraLongitud
- 		xor rsi, rsi
- 		mov sil, al
- 		add r12, rsi
- 		inc r13
- 		mov r14, [r14 + OFFSET_SIGUIENTE]
- 		cmp r14, NULL
- 		jnz .ciclo
- 		jmp .fin
+	 		mov rdi, [r14 + OFFSET_PALABRA]
+	 		call palabraLongitud				;el resultado está en AL
+	 		and rax, 0xff 						;extiendo el resultado a 64bits
+	 		add r12, rax 
+	 		inc r13
+	 		mov r14, [r14 + OFFSET_SIGUIENTE]
+	 		cmp r14, NULL
+	 		jnz .ciclo
 
- 		.listaVacia:
- 		mov r13, 1
- 		
- 		.fin:
+ 		;Cálculo del promedio
  		cvtsi2ss xmm0, r12 
  		cvtsi2ss xmm1, r13
  		divss xmm0, xmm1
 
+ 		.fin:
  		pop r14
  		pop r13
  		pop r12
@@ -359,34 +342,35 @@ section .text
 
 		;Caso l no vacia
 		.noVacia:
-		mov r12, rdi 	;R12 = l 
-		mov r13, rdx 	;r13 = funcCompararPalabra
-		mov rdi, rsi 	;RDI = palabra
-		call nodoCrear
-		mov rbx, rax 	;RBX = ptr nodo nuevo
-		mov r14, NULL  ;R14 = ptr al nodo anterior
-		mov r15, [r12 + OFFSET_PRIMERO] ;R15 = ptr al nodo actual
-		.ciclo:
-		cmp r15, NULL
-		jz .asignacion
-		mov rdi, [r15 + OFFSET_PALABRA]
-		mov rsi, [rbx + OFFSET_PALABRA]
-		call r13 		;Resultado en al
-		cmp al, FALSE
-		jz .asignacion
-		mov r14, r15
-		mov r15, [r15 + OFFSET_SIGUIENTE]
-		jmp .ciclo
+			mov r12, rdi 							;R12 = l 
+			mov r13, rdx 							;R13 = funcCompararPalabra
+			mov rdi, rsi 							;RDI = palabra
+			call nodoCrear
+			mov rbx, rax 							;RBX = ptr nodo nuevo
+			mov r14, NULL  						;R14 = ptr al nodo anterior
+			mov r15, [r12 + OFFSET_PRIMERO]  ;R15 = ptr al nodo actual
+		
+			.ciclo:
+				cmp r15, NULL
+				jz .asignacion
+				mov rdi, [r15 + OFFSET_PALABRA]
+				mov rsi, [rbx + OFFSET_PALABRA]
+				call r13 							;Resultado en AL
+				cmp al, FALSE
+				jz .asignacion
+				mov r14, r15
+				mov r15, [r15 + OFFSET_SIGUIENTE]
+				jmp .ciclo
 
-		.asignacion:
-		mov [rbx + OFFSET_SIGUIENTE], r15
-		cmp r14, NULL
-		jz .agregarPrimero
-		mov [r14 + OFFSET_SIGUIENTE], rbx
-		jmp .fin
+			.asignacion:
+				mov [rbx + OFFSET_SIGUIENTE], r15
+				cmp r14, NULL
+				jz .agregarPrimero
+				mov [r14 + OFFSET_SIGUIENTE], rbx
+				jmp .fin
 
-		.agregarPrimero:
-		mov [r12 + OFFSET_PRIMERO], rbx
+			.agregarPrimero:
+			mov [r12 + OFFSET_PRIMERO], rbx
 
 		.fin:
 		pop r15
@@ -398,8 +382,6 @@ section .text
 		pop rbp
 		ret
 
-
-		
 
 	; void filtrarAltaLista( lista *l, bool (*funcCompararPalabra)(char*,char*), char *palabraCmp );
 	filtrarPalabra:
