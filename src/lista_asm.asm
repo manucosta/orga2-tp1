@@ -394,43 +394,43 @@ section .text
 		push r14
 		push r15
 
-		mov rbx, rdi 					;RBX = l->primero
-		mov r12, rsi 					;R12 = funcComparar
-		mov r13, rdx 					;R13 = palabraCmp
-		mov r14, NULL					;R14 = (nodo*) anterior
+		mov rbx, rdi 						  ;RBX = l
+		mov r12, rsi 						  ;R12 = funcComparar
+		mov r13, rdx 						  ;R13 = palabraCmp
+		mov r14, NULL						  ;R14 = (nodo*) anterior
 		mov r15, [rbx + OFFSET_PRIMERO] ;R15 = (nodo*) actual
 		.ciclo:
-		cmp r15, NULL
-		jz .fin
-		mov rdi, [r15 + OFFSET_PALABRA]
-		mov rsi, r13
-		call r12
-		cmp al, TRUE
-		jnz .quitarNodo
-		cmp r14, NULL
-		jnz .salto1
-		mov [rbx + OFFSET_PRIMERO], r15
-		.salto1:
-		mov r14, r15								;avanzo anterior
-		mov r15, [r15 + OFFSET_SIGUIENTE]	;avanzo actual
-		jmp .ciclo
+			cmp r15, NULL
+			jz .finLoop
+			mov rdi, [r15 + OFFSET_PALABRA]
+			mov rsi, r13
+			call r12
+			cmp al, TRUE
+			jnz .quitarNodo	
+				cmp r14, NULL		;Caso funcComparar(actual, palabraCmp) == true
+				jnz .avanzarPtrs
+				mov [rbx + OFFSET_PRIMERO], r15 ;Si es el primer elemento que pasa el filtro, hacerlo l->primero
+				.avanzarPtrs:
+				mov r14, r15								;avanzo anterior
+				mov r15, [r15 + OFFSET_SIGUIENTE]	;avanzo actual
+				jmp .ciclo
 
-		.quitarNodo:
-		cmp r14, NULL
-		jz .salto2
-		mov rdx, [r15 + OFFSET_SIGUIENTE]
-		mov [r14 + OFFSET_SIGUIENTE], rdx
-		.salto2:
-		mov rdi, r15						;guardo la ref a actual para borrarlo
-		mov r15, [r15 + OFFSET_SIGUIENTE]  ;avanzo actual 
-		call nodoBorrar
-		jmp .ciclo
+				.quitarNodo:		;Caso funcComparar(actual, palabraCmp) == false
+				cmp r14, NULL		
+				jz .avanzoActual
+				mov rdx, [r15 + OFFSET_SIGUIENTE]	;Si anterior != NULL, 
+				mov [r14 + OFFSET_SIGUIENTE], rdx	;anterior = actual->siguiente
+				.avanzoActual:
+				mov rdi, r15						;guardo la ref a actual para borrarlo
+				mov r15, [r15 + OFFSET_SIGUIENTE]  ;avanzo actual 
+				call nodoBorrar
+				jmp .ciclo
 
+		.finLoop:
+		cmp r14, NULL	;Si anterior == NULL, ningún elemento pasó el filtro
+		jnz .fin 		
+		mov qword[rbx + OFFSET_PRIMERO], NULL	;l->primero = NULL
 		.fin:
-		cmp r14, NULL
-		jnz .salto3
-		mov qword[rbx + OFFSET_PRIMERO], NULL
-		.salto3:
 		pop r15
 		pop r14
 		pop r13
@@ -443,11 +443,11 @@ section .text
 
 	; void descifrarMensajeDiabolico( lista *l, char *archivo, void (*funcImpPbr)(char*,FILE* ) );
 	descifrarMensajeDiabolico:
-		push rbp
-		mov rbp, rsp
-		push r12
-		push r13
-		push r14
+		push rbp 		;Notar que el stack queda desalineado por lo que
+		mov rbp, rsp	;debo alinearlo antes de llamar a cada función.
+		push r12  		;El objetivo de esto es disminuir el número de
+		push r13  		;operaciones a realizar dentro del cicloPop
+		push r14	 		;(i.e. acoto por cte la cant de sub/add rsp, 8)
 
 		mov r12, [rdi + OFFSET_PRIMERO] 	;R12 = l->primero
 		mov r13, rdx 							;R13 = funcImpPbr 
@@ -460,57 +460,42 @@ section .text
 		cmp r12, NULL
 		jz .listaVacia
 		xor rcx, rcx
+		push rcx 		;aca alineo el stack
 		.cicloPush:
-		push r12
-		mov r12, [r12 + OFFSET_SIGUIENTE]
-		inc rcx									;RCX cuenta la cant de palabras de la oración == cant de push
-		cmp r12, NULL
-		jnz .cicloPush
+			push r12
+			mov r12, [r12 + OFFSET_SIGUIENTE]
+			inc rcx									;RCX cuenta la cant de palabras de la oración == cant de push
+			push rcx
+			cmp r12, NULL
+			jnz .cicloPush
 
-		;cuando rcx es par tengo que alinear el stack
-		;antes del call r13
-		mov rax, rcx
-		and al, 0x01
-		cmp al, 0
-		jz .cicloPopPar
-
-		;TODO: Hacer una auxiliar que decida si un int es par
-
-		.cicloPopImpar:
-		pop r12
-		mov rdi, [r12 + OFFSET_PALABRA]
-		mov rsi, r14
-		push rcx
-		call r13
+		;Acá seguro esta alineado (pues hice una cantidad par de push's)
 		pop rcx
-		loop .cicloPopPar
-		jmp .fin
-
-		.cicloPopPar:
-		pop r12
-		mov rdi, [r12 + OFFSET_PALABRA]
-		mov rsi, r14
-		push rcx
-		sub rsp, 8
-		call r13
-		add rsp, 8
-		pop rcx
-		loop .cicloPopImpar
-		jmp .fin
+		;Al hacer este pop deje la pila desalineada
+		.cicloPop:
+			pop r12		;alineo stack
+			mov rdi, [r12 + OFFSET_PALABRA]
+			mov rsi, r14
+			call r13
+			pop rcx 		;desalineo
+			cmp rcx, 0
+			jnz .cicloPop
+			jmp .fin
 
 		.listaVacia:
-		mov rdi, sinMD
-		mov rsi, r14
-		sub rsp, 8
-		call r13
-		add rsp, 8
+			mov rdi, sinMD
+			mov rsi, r14
+			sub rsp, 8
+			call r13
+			add rsp, 8
 
 		.fin:
+		sub rsp, 8		;alineo stack
 		mov rdi, r14
 		call fclose
+		add rsp, 8
 		pop r14
 		pop r13
 		pop r12
 		pop rbp
 		ret
-

@@ -145,6 +145,7 @@ int main (void){
 	insertarOrdenado( unico, palabraCopiar( "palabra1" ), palabraMenor);
 	descifrarMensajeDiabolico(unico, "/dev/stdout", palabraImprimir);
 
+
 	printf("Descifrar lista mediana:\n");
 	lista *miLista = oracionCrear();
 	insertarOrdenado( miLista, palabraCopiar( "palabra1" ), palabraMenor);
